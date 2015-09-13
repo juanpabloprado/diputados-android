@@ -1,5 +1,7 @@
 package com.juanpabloprado.diputados.model;
 
+import android.net.Uri;
+
 import com.juanpabloprado.diputados.utils.ParseConstants;
 import com.parse.FindCallback;
 import com.parse.ParseClassName;
@@ -54,6 +56,7 @@ public class Diputado extends ParseObject {
         return getList(ParseConstants.KEY_ASISTENCIAS);
     }
 
+
     public static void findAllInBackground(final FindCallback<Diputado> callback) {
         ParseQuery<Diputado> diputadoQuery = ParseQuery.getQuery(Diputado.class);
         diputadoQuery.findInBackground(new FindCallback<Diputado>() {
@@ -67,5 +70,13 @@ public class Diputado extends ParseObject {
                 }
             }
         });
+    }
+
+    public static String getDiputadoId(Uri uri) {
+        List<String> path = uri.getPathSegments();
+        if (path.size() != 2 || !"diputado".equals(path.get(0))) {
+            throw new RuntimeException("Invalid URI for talk: " + uri);
+        }
+        return path.get(1);
     }
 }

@@ -19,4 +19,5 @@ public class ParseConstants {
     public static final String KEY_TIPO_ELECCION = "tipoEleccion";
     public static final String KEY_ACADEMICOS = "academicos";
     public static final String KEY_ASISTENCIAS = "asistencias";
+    public static final String KEY_FOTO = "foto";
 }

@@ -1,5 +1,7 @@
 package com.juanpabloprado.diputados;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.juanpabloprado.diputados.model.Diputado;
+import com.juanpabloprado.diputados.ui.DiputadoActivity;
 import com.juanpabloprado.diputados.ui.MainActivity;
 import com.juanpabloprado.diputados.utils.ParseConstants;
 import com.parse.ParseObject;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -42,6 +46,8 @@ public class DiputadoAdapter extends RecyclerView.Adapter<DiputadoAdapter.Diputa
         diputadoHolder.entidadView.setText(diputado.getString(ParseConstants.KEY_ENTIDAD));
         String party = diputado.getString(ParseConstants.KEY_PARTY);
         diputadoHolder.partyView.setText(party);
+
+        Picasso.with(mActivity).load(diputado.getString(ParseConstants.KEY_FOTO)).into(diputadoHolder.diputadoImage);
         if(party.equals("PRI")) {
             diputadoHolder.partyImageView.setImageResource(R.drawable.pri01);
         }
@@ -63,6 +69,29 @@ public class DiputadoAdapter extends RecyclerView.Adapter<DiputadoAdapter.Diputa
         if(party.equals("PANAL")) {
             diputadoHolder.partyImageView.setImageResource(R.drawable.ali);
         }
+        if(party.equals("MORENA")) {
+            diputadoHolder.partyImageView.setImageResource(R.drawable.mor);
+        }
+
+        diputadoHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDiputadoDetailView(diputado);
+            }
+        });
+    }
+
+    public void openDiputadoDetailView(ParseObject diputado) {
+        Intent intent = new Intent(mActivity, DiputadoActivity.class);
+        intent.setData(getUri(diputado));
+        mActivity.startActivity(intent);
+    }
+
+    private Uri getUri(ParseObject diputado) {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("dp");
+        builder.path("diputado/" + diputado.getObjectId());
+        return builder.build();
     }
 
     @Override
@@ -75,6 +104,7 @@ public class DiputadoAdapter extends RecyclerView.Adapter<DiputadoAdapter.Diputa
         public TextView partyView;
         public TextView entidadView;
         public ImageView partyImageView;
+        public ImageView diputadoImage;
 
         public DiputadoHolder(View itemView) {
             super(itemView);
@@ -82,6 +112,7 @@ public class DiputadoAdapter extends RecyclerView.Adapter<DiputadoAdapter.Diputa
             partyView = (TextView) itemView.findViewById(R.id.diputado_party);
             entidadView = (TextView) itemView.findViewById(R.id.diputado_entidad);
             partyImageView = (ImageView) itemView.findViewById(R.id.party_image);
+            diputadoImage = (ImageView) itemView.findViewById(R.id.diputado_image);
         }
     }
 
