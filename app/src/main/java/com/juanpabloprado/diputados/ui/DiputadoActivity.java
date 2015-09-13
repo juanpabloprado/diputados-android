@@ -29,8 +29,6 @@ public class DiputadoActivity extends AppCompatActivity {
 
         // Fetch the data about this talk from Parse.
         String diputadoId = Diputado.getDiputadoId(getIntent().getData());
-        Log.i(TAG, "diputadoId " + diputadoId);
-        Toast.makeText(this, "diputadoId " + diputadoId, Toast.LENGTH_LONG).show();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery(ParseConstants.CLASS_DIPUTADOS);
         query.getInBackground(diputadoId, new GetCallback<ParseObject>() {
@@ -44,9 +42,20 @@ public class DiputadoActivity extends AppCompatActivity {
 
     private void updateView(final ParseObject diputado) {
         TextView nameView = (TextView) findViewById(R.id.name);
-        nameView.setText(diputado.getString(ParseConstants.KEY_NAME));
         ImageView diputadoImage = (ImageView) findViewById(R.id.diputado_image);
+        TextView eleccionView = (TextView) findViewById(R.id.diputado_eleccion);
+        TextView entidadView = (TextView) findViewById(R.id.diputado_entidad);
+        TextView circunView = (TextView) findViewById(R.id.diputado_circunscripcion);
+        TextView curulView = (TextView) findViewById(R.id.diputado_curul);
+        TextView emailView = (TextView) findViewById(R.id.diputado_email);
+
+        nameView.setText(diputado.getString(ParseConstants.KEY_NAME));
         Picasso.with(this).load(diputado.getString(ParseConstants.KEY_FOTO)).into(diputadoImage);
+        eleccionView.setText(diputado.getString(ParseConstants.KEY_TIPO_ELECCION));
+        entidadView.setText(diputado.getString(ParseConstants.KEY_ENTIDAD));
+        circunView.setText(diputado.getString(ParseConstants.KEY_CIRCUNSCRIPCION));
+        curulView.setText(diputado.getString(ParseConstants.KEY_CURUL));
+        emailView.setText(diputado.getString(ParseConstants.KEY_CORREO));
     }
 
     @Override

@@ -8,4 +8,9 @@
     <string name="action_settings">Settings</string>
     <string name="error_title">We\'re sorry!</string>
     <string name="title_activity_diputado">DiputadoActivity</string>
+    <string name="tipo_eleccion">Tipo de eleccion</string>
+    <string name="entidad">Entidad</string>
+    <string name="circunscripcion">Circunscripcion</string>
+    <string name="curul">Curul</string>
+    <string name="email">Email</string>
 </resources>

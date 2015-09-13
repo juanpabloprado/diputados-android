@@ -30,7 +30,7 @@
 
         <activity
             android:name=".ui.DiputadoActivity"
-            android:label="@string/title_activity_diputado"
+            android:label="@string/app_name"
             android:parentActivityName=".ui.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
