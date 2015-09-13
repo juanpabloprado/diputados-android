@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.juanpabloprado.diputados.model.Diputado;
@@ -38,7 +39,30 @@ public class DiputadoAdapter extends RecyclerView.Adapter<DiputadoAdapter.Diputa
     public void onBindViewHolder(DiputadoHolder diputadoHolder, int i) {
         final ParseObject diputado = mDiputados.get(i);
         diputadoHolder.nameView.setText(diputado.getString(ParseConstants.KEY_NAME));
-        diputadoHolder.partyView.setText(diputado.getString(ParseConstants.KEY_PARTY));
+        diputadoHolder.entidadView.setText(diputado.getString(ParseConstants.KEY_ENTIDAD));
+        String party = diputado.getString(ParseConstants.KEY_PARTY);
+        diputadoHolder.partyView.setText(party);
+        if(party.equals("PRI")) {
+            diputadoHolder.partyImageView.setImageResource(R.drawable.pri01);
+        }
+        if(party.equals("PAN")) {
+            diputadoHolder.partyImageView.setImageResource(R.drawable.pan);
+        }
+        if(party.equals("PRD")) {
+            diputadoHolder.partyImageView.setImageResource(R.drawable.prd01);
+        }
+        if(party.equals("PVEM")) {
+            diputadoHolder.partyImageView.setImageResource(R.drawable.vrd);
+        }
+        if(party.equals("MOVCI")) {
+            diputadoHolder.partyImageView.setImageResource(R.drawable.movci);
+        }
+        if(party.equals("PT")) {
+            diputadoHolder.partyImageView.setImageResource(R.drawable.pt);
+        }
+        if(party.equals("PANAL")) {
+            diputadoHolder.partyImageView.setImageResource(R.drawable.ali);
+        }
     }
 
     @Override
@@ -49,11 +73,15 @@ public class DiputadoAdapter extends RecyclerView.Adapter<DiputadoAdapter.Diputa
     public class DiputadoHolder extends RecyclerView.ViewHolder {
         public TextView nameView;
         public TextView partyView;
+        public TextView entidadView;
+        public ImageView partyImageView;
 
         public DiputadoHolder(View itemView) {
             super(itemView);
             nameView = (TextView) itemView.findViewById(R.id.diputado_name);
             partyView = (TextView) itemView.findViewById(R.id.diputado_party);
+            entidadView = (TextView) itemView.findViewById(R.id.diputado_entidad);
+            partyImageView = (ImageView) itemView.findViewById(R.id.party_image);
         }
     }
 
