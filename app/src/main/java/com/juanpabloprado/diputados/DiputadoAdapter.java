@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.juanpabloprado.diputados.model.Diputado;
 import com.juanpabloprado.diputados.ui.MainActivity;
 import com.juanpabloprado.diputados.utils.ParseConstants;
 import com.parse.ParseObject;
@@ -20,9 +21,9 @@ public class DiputadoAdapter extends RecyclerView.Adapter<DiputadoAdapter.Diputa
 
     private LayoutInflater mInflater;
     private MainActivity mActivity;
-    private List<ParseObject> mDiputados;
+    private List<Diputado> mDiputados;
 
-    public DiputadoAdapter(MainActivity activity, List<ParseObject> diputados) {
+    public DiputadoAdapter(MainActivity activity, List<Diputado> diputados) {
         mActivity = activity;
         mInflater = LayoutInflater.from(activity);
         mDiputados = diputados;
@@ -56,7 +57,7 @@ public class DiputadoAdapter extends RecyclerView.Adapter<DiputadoAdapter.Diputa
         }
     }
 
-    public void refill(List<ParseObject> diputados) {
+    public void refill(List<Diputado> diputados) {
         mDiputados.clear();
         mDiputados.addAll(diputados);
         notifyDataSetChanged();

@@ -13,12 +13,10 @@ import android.widget.TextView;
 
 import com.juanpabloprado.diputados.DiputadoAdapter;
 import com.juanpabloprado.diputados.R;
+import com.juanpabloprado.diputados.model.Diputado;
 import com.juanpabloprado.diputados.utils.ParseConstants;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import java.util.List;
 
@@ -44,12 +42,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         showLoading();
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Diputado");
-        query.findInBackground(new FindCallback<ParseObject>() {
+        Diputado.findAllInBackground(new FindCallback<Diputado>() {
             @Override
-            public void done(List<ParseObject> diputados, ParseException e) {
+            public void done(List<Diputado> diputados, ParseException e) {
                 if (e == null) {
-                    Log.d("diputados", "Retrieved " + diputados.size());
+                    Log.d(ParseConstants.CLASS_DIPUTADOS, "Retrieved " + diputados.size());
                     if (mAdapter == null) {
                         // setup recyclerView
                         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
