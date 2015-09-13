@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import com.juanpabloprado.diputados.utils.ParseConstants;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -55,7 +56,6 @@ public class Diputado extends ParseObject {
         // Object Array
         return getList(ParseConstants.KEY_ASISTENCIAS);
     }
-
 
     public static void findAllInBackground(final FindCallback<Diputado> callback) {
         ParseQuery<Diputado> diputadoQuery = ParseQuery.getQuery(Diputado.class);

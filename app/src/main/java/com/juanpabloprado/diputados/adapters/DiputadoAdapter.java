@@ -1,4 +1,4 @@
-package com.juanpabloprado.diputados;
+package com.juanpabloprado.diputados.adapters;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.juanpabloprado.diputados.R;
 import com.juanpabloprado.diputados.model.Diputado;
 import com.juanpabloprado.diputados.ui.DiputadoActivity;
 import com.juanpabloprado.diputados.ui.MainActivity;

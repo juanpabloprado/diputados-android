@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.juanpabloprado.diputados.DiputadoAdapter;
+import com.juanpabloprado.diputados.adapters.DiputadoAdapter;
 import com.juanpabloprado.diputados.R;
 import com.juanpabloprado.diputados.model.Diputado;
 import com.juanpabloprado.diputados.utils.ParseConstants;
